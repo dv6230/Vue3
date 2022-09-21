@@ -18,8 +18,11 @@
           </ul>
           <form class="d-flex" role="search">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+              <li v-if="$store.state.isLogin === false" class="nav-item">
                 <router-link class="nav-link" to="/login">登入</router-link>
+              </li>
+              <li v-if="$store.state.isLogin === true" class="nav-item">
+                <router-link class="nav-link" to="/login">登出</router-link>
               </li>
             </ul>
           </form>
