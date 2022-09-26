@@ -24,6 +24,9 @@
 </template>
 
 <script>
+
+import {fetchPostApi} from "@/js/FetchAPI";
+
 export default {
   name: "LoginView",
   created() {
@@ -53,9 +56,14 @@ export default {
 
       this.$loading(true)
       await this.$store.dispatch("LoginUser", {userName: 'hello', userId: 1})
-      await new Promise(resolve => setTimeout(resolve, 250))
+      // await new Promise(resolve => setTimeout(resolve, 250))
+      fetchPostApi('test/Test1',
+          {
+
+          }
+      ).then(result => console.log(result))
       this.$loading(false)
-      this.$router.push('/main')
+      // this.$router.push('/main')
     }
   }
 }
