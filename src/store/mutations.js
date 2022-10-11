@@ -1,7 +1,4 @@
 export default {
-    TEST: function (state, data) {      //status -> payload （載荷）
-        state.test = data;
-    },
     Login: function (state, data) {
         state.user.userName = data.userName
         state.user.userId = data.userId
@@ -13,5 +10,9 @@ export default {
             userId: 0,
         };
         state.isLogin = false
-    }
+        state.token = ''
+    },
+    Token: function (state, data) {
+        state.token = data
+    },
 }

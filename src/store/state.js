@@ -1,6 +1,5 @@
 export default {
-    token: 100,
-    test: 'content',
+    token: '',
     user: {
         userName: '',
         userId: 0,

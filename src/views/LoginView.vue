@@ -43,26 +43,32 @@ export default {
   methods: {
     async login() {
 
-      this.accountEmpty = false;
-      this.passwordEmpty = false
+      let self = this
 
-      if (this.account.length <= 0) {
-        this.accountEmpty = true
+      self.accountEmpty = false;
+      self.passwordEmpty = false
+
+      if (self.account.length <= 0) {
+        self.accountEmpty = true
         return;
-      } else if (this.password.length <= 0) {
-        this.passwordEmpty = true
+      } else if (self.password.length <= 0) {
+        self.passwordEmpty = true
         return
       }
-
-      this.$loading(true)
-      await this.$store.dispatch("LoginUser", {userName: 'hello', userId: 1})
+      self.$loading(true)
       // await new Promise(resolve => setTimeout(resolve, 250))
-      fetchPostApi('test/Test1',
+      fetchPostApi('user/login',
           {
-
+            email: '123@gmail.com',
+            password: '1111'
           }
-      ).then(result => console.log(result))
-      this.$loading(false)
+      ).then(function (result) {
+        console.log(result.message)
+        self.$store.dispatch("LoginUser", {userName: result.data.userName, userId: result.data.userId})
+        self.$store.dispatch("UpdateToken",result.data.token)
+      })
+
+      self.$loading(false)
       // this.$router.push('/main')
     }
   }
